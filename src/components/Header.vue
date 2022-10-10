@@ -37,6 +37,10 @@
             </li>
           </template>
         </ul>
+        <ul class="ml-auto">
+          <li><a href="#" class="px-2 text-white" @click.prevent="changeLocale">
+          {{ currentLocale }}</a></li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -52,6 +56,9 @@ export default {
     ...mapStores(useModalStore, useUserStore),
     // 要複寫State裡的資料，只有其中一項時，可以使用mapWritableState
     // ...mapWritableState(useModalStore, ["isOpen"])
+    currentLocale(){
+      return this.$i18n.locale === 'tw' ? '中文' : 'English'
+    }
   },
   methods: {
     toggleAuthModal() {
@@ -66,6 +73,9 @@ export default {
         this.$router.push({ name: "home" });
       }
     },
+    changeLocale(){
+      this.$i18n.locale = this.$i18n.locale === 'tw' ? 'en' : 'tw'
+    }
   },
 };
 </script>

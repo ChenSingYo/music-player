@@ -49,13 +49,13 @@ export default {
     return {
       is_dragover: false,
       uploads: [],
-    }
+    };
   },
-  props:{
+  props: {
     addSong: {
       type: Function,
       required: true,
-    }
+    },
   },
   methods: {
     upload(e) {
@@ -69,6 +69,18 @@ export default {
         if (!file.type.match("audio.*")) {
           return;
         }
+        if (!navigator.onLine) {
+          this.uploads.push({
+            task: {},
+            current_progress: 100,
+            name: file.name,
+            variant: "bg-red-400",
+            icon: "fas fa-times",
+            text_class: "text-red-400",
+          });
+          return;
+        }
+
         console.log(file);
         const storageRef = storage.ref();
         const songsRef = storageRef.child(`songs/${file.name}`);
@@ -110,8 +122,8 @@ export default {
             //  firebase: && request.resource.contentType.matches("audio/*") && request.resource.size < 100 * 1024 * 1024;
             song.url = await task.snapshot.ref.getDownloadURL();
             const songRef = await songsCollection.add(song);
-            const songSnapshot = await songRef.get()
-            this.addSong(songSnapshot)
+            const songSnapshot = await songRef.get();
+            this.addSong(songSnapshot);
 
             this.uploads[uploadIndex].variant = "bg-green-400";
             this.uploads[uploadIndex].icon = "fas fa-check";

@@ -1,0 +1,15 @@
+{
+  "home": {
+    "listen": "請來聽我的歌單"
+  },
+  "song": {
+    "comment_count": "無評論 | 1則評論 | {count}則評論"
+  },
+  "register": {
+    "accept": "接受本平台的 {0}",
+    "tos": "使用條款"
+  },
+  "manage": {
+    "my_songs": "我的歌單"
+  }
+}
