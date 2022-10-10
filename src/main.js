@@ -8,6 +8,7 @@ import router from "./router";
 
 import "./assets/base.css";
 import "./assets/main.css";
+import Icon from "./directives/icon";
 
 let app;
 
@@ -17,6 +18,7 @@ auth.onAuthStateChanged(() => {
     app.use(createPinia());
     app.use(router);
     app.use(VeeValidatePlugin);
+    app.directive("icon", Icon);
     app.mount("#app");
   }
 });

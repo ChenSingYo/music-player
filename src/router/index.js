@@ -1,5 +1,6 @@
 import useUserStore from "@/stores/user";
 import Home from "@/views/Home.vue";
+import Song from "@/views/Song.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
@@ -25,12 +26,18 @@ const routes = [
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import("../views/Manage.vue"),
-    beforeEnter(to, from, next) {
-      next();
-    },
+    // beforeEnter(to, from, next) {
+    //   console.log('manage route guard')
+    //   next();
+    // },
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    name:'song',
+    path: '/song/:id',
+    component: Song
   },
   {
     path: "/:catchAll(.*)*",
