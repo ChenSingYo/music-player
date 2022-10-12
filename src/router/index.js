@@ -1,20 +1,17 @@
 import useUserStore from "@/stores/user";
-import Home from "@/views/Home.vue";
-import Song from "@/views/Song.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
+
+
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/About.vue"),
   },
   {
@@ -22,9 +19,6 @@ const routes = [
     path: "/manage-music",
     // optional route name
     alias: "/manage",
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import("../views/Manage.vue"),
     // beforeEnter(to, from, next) {
     //   console.log('manage route guard')
@@ -37,7 +31,7 @@ const routes = [
   {
     name:'song',
     path: '/song/:id',
-    component: Song
+    component: () => import("../views/Song.vue"),
   },
   {
     path: "/:catchAll(.*)*",
