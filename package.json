@@ -6,12 +6,14 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom --ui",
-    "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
+    "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress run --browser chrome'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "cy:run": "./node_modules/.bin/cypress install && ./node_modules/.bin/cypress run"
   },
   "dependencies": {
     "@vee-validate/rules": "^4.6.9",
+    "Cypress": "npm:cypress@^10.10.0",
     "firebase": "^8.10.1",
     "howler": "^2.2.3",
     "nprogress": "^0.2.0",
@@ -29,7 +31,7 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.0.2",
     "autoprefixer": "^10.4.12",
-    "cypress": "^10.7.0",
+    "cypress": "^10.10.0",
     "eslint": "^8.22.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.3.0",
